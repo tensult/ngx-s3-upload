@@ -1,6 +1,6 @@
 {
   "name": "ng2-s3-upload",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Angular 2 S3 Uploads",
   "dependencies": {
     "@angular/common": "^2.4.10",
