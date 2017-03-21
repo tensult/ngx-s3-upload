@@ -302,7 +302,6 @@ export class FileUploader {
   }
 
   protected _s3Upload(item:FileItem):any {
-    let sendable:any;
     this._onBeforeUploadItem(item);
     // todo
     /*item.formData.map(obj => {
@@ -325,7 +324,7 @@ export class FileUploader {
       this._onProgressItem(item, progress);
     });
 
-    s3Upload.send((err: AWS.AWSError, data) => {
+    s3Upload.send((err: AWS.AWSError) => {
       if(err) {
         this._onErrorItem(item, err.message, err.statusCode, this._parseHeaders("requestId:"+err.requestId));
       }
@@ -458,11 +457,9 @@ export class FileUploader {
 
   /* tslint:disable */
   protected _transformResponse(response:string, headers:ParsedResponseHeaders):string {
-    // todo: ?
-    /*var headersGetter = this._headersGetter(headers);
-     forEach($http.defaults.transformResponse, (transformFn) => {
-     response = transformFn(response, headersGetter);
-     });*/
+    if(headers) {
+      //todo handle headers
+    }
     return response;
   }
 
