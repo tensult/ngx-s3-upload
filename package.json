@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "typings": "lib/index",
   "files": [
-    "lib/"
+    "lib/",
+    "index.js"
   ],
   "dependencies": {
     "@angular/common": "^2.4.10",
