@@ -1,13 +1,8 @@
 {
   "name": "ng2-s3-upload",
+  "private": true,
   "version": "0.2.4",
   "description": "Angular 2 S3 Uploads",
-  "main": "lib/index.js",
-  "typings": "lib/index",
-  "files": [
-    "lib/",
-    "index.js"
-  ],
   "dependencies": {
     "@angular/common": "^2.4.10",
     "@angular/core": "^2.4.10",
@@ -21,12 +16,9 @@
     "gulp-typescript": "^3.1.6",
     "typescript": "^2.2.1"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tensult/ng2-s3-upload.git"
+    "url": "https://github.com/tensult/ng2-s3-upload.git"
   },
   "keywords": [
     "S3",
