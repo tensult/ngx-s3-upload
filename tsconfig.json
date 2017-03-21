@@ -4,9 +4,14 @@
         "target": "es5",
         "declaration": true,
         "outDir": "lib/",
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "moduleResolution": "node"
     },
     "files": [
-        "./src/index.ts"
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
     ]
 }
