@@ -15,14 +15,21 @@ body {
     transition: opacity 0.3s linear;
 }
 
-.fileinput-button>input[type=file] {
+.uploads {
+    margin: 10px;
+}
+
+.uploads label.file-input-btn {
+    margin: 0;
+}
+
+#inputFiles {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -30px;
+    right: -30px;
     margin: 0;
     opacity: 0;
     filter: alpha(opacity=0);
-    transform: translate(-300px, 0) scale(4);
     font-size: 23px;
     direction: ltr;
     cursor: pointer;

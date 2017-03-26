@@ -1,26 +1,29 @@
 <div class="file-row row">
-  <div class="col-sm-2">
-    <p class="name">{{file.name}}</p>
+  <div class="col-lg-3">
+    <p class="name">{{fileObject.file.name}}</p>
     <strong class="error text-danger"></strong>
   </div>
-  <div class="col-sm-5">
-    <p class="size">{{file.size | fileSize}}</p>
-    <progressbar class="progress-striped" [value]="progress" type="success">
-      <b>{{progress}}%</b>
-    </progressbar>
+  <div class="col-sm-3">
+    <p class="size">{{fileObject.file.size | fileSize}}</p>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [ngStyle]="{'width': progress + '%'}" aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100">
+        <span *ngIf="progress > 0">{{progress}}%</span>
+      </div>
+    </div>
+    <p *ngIf="progress > 0"  class="speed text-center">{{speed | fileSize}}/s</p>
   </div>
-  <div class="col-sm-5">
-    <button class="btn btn-primary start">
+  <div class="col-sm-4">
+    <button class="btn btn-primary start" (click)="upload()">
               <i class="glyphicon glyphicon-upload"></i>
               <span>Start</span>
-          </button>
-    <button data-dz-remove class="btn btn-warning cancel">
+    </button>
+    <button [disabled]="fileObject.status !== FileObjectStatus.Uploading" class="btn btn-warning cancel" (click)="cancel()">
               <i class="glyphicon glyphicon-ban-circle"></i>
               <span>Cancel</span>
-          </button>
-    <button data-dz-remove class="btn btn-danger delete">
+    </button>
+    <button class="btn btn-danger delete" (click)="delete()">
             <i class="glyphicon glyphicon-trash"></i>
             <span>Delete</span>
-          </button>
+    </button>
   </div>
 </div>

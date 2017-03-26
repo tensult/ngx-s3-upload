@@ -2,9 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { ProgressbarModule } from 'ng2-bootstrap/progressbar';
 
-import { GlobalUploadComponent } from './global-upload/component';
+import {UploadService} from './upload.service';
+import { UploadContainerComponent } from './upload-container/component';
 import { FileUploadComponent } from './file-upload/component';
 
 import {FileSizePipe} from '../utils/file-size.pipe';
@@ -12,16 +12,15 @@ import {FileSizePipe} from '../utils/file-size.pipe';
 @NgModule({
   declarations: [
     FileSizePipe,
-    GlobalUploadComponent,
+    UploadContainerComponent,
     FileUploadComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    ProgressbarModule.forRoot()
+    HttpModule
   ],
-  providers: [],
-  bootstrap: [GlobalUploadComponent]
+  providers: [UploadService],
+  bootstrap: [UploadContainerComponent]
 })
 export class AppModule { }
