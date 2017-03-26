@@ -1,0 +1,31 @@
+<div id="actions" class="uploads">
+
+  <div class="col-lg-7">
+    <!-- The fileinput-button span is used to style the file input field as button -->
+    <span class="btn btn-success fileinput-button">
+            <i class="glyphicon glyphicon-plus"></i>
+            <span>Add files...</span>
+    <input name="files[]" multiple="" type="file" (change)="fileChangeEvent($event)">
+    </span>
+    <button type="submit" class="btn btn-primary start">
+            <i class="glyphicon glyphicon-upload"></i>
+            <span>Start upload</span>
+        </button>
+    <button type="reset" class="btn btn-warning cancel">
+            <i class="glyphicon glyphicon-ban-circle"></i>
+            <span>Cancel upload</span>
+        </button>
+  </div>
+
+  <div class="col-lg-5">
+    <!-- The global file processing state -->
+    <span class="fileupload-process">
+          <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+          </div>
+        </span>
+  </div>
+  <div class="table table-striped files col-lg-12" id="previews">
+    <app-file-upload *ngFor="let file of files" [file]="file"></app-file-upload>
+  </div>
+</div>

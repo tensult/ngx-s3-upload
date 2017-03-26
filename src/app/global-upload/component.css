@@ -1,0 +1,51 @@
+html,
+body {
+    height: 100%;
+}
+
+#actions {
+    margin: 2em 0;
+}
+
+
+/* The total progress gets shown by event listeners */
+
+#total-progress {
+    opacity: 0;
+    transition: opacity 0.3s linear;
+}
+
+.fileinput-button>input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    transform: translate(-300px, 0) scale(4);
+    font-size: 23px;
+    direction: ltr;
+    cursor: pointer;
+}
+
+/* Mimic table appearance */
+
+div.table {
+    display: table;
+}
+
+div.table .file-row {
+    display: table-row;
+}
+
+div.table .file-row>div {
+    display: table-cell;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    padding: 8px;
+}
+
+div.table .file-row:nth-child(odd) {
+    background: #f9f9f9;
+}
+

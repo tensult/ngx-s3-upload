@@ -1,0 +1,26 @@
+<div class="file-row row">
+  <div class="col-sm-2">
+    <p class="name">{{file.name}}</p>
+    <strong class="error text-danger"></strong>
+  </div>
+  <div class="col-sm-5">
+    <p class="size">{{file.size | fileSize}}</p>
+    <progressbar class="progress-striped" [value]="progress" type="success">
+      <b>{{progress}}%</b>
+    </progressbar>
+  </div>
+  <div class="col-sm-5">
+    <button class="btn btn-primary start">
+              <i class="glyphicon glyphicon-upload"></i>
+              <span>Start</span>
+          </button>
+    <button data-dz-remove class="btn btn-warning cancel">
+              <i class="glyphicon glyphicon-ban-circle"></i>
+              <span>Cancel</span>
+          </button>
+    <button data-dz-remove class="btn btn-danger delete">
+            <i class="glyphicon glyphicon-trash"></i>
+            <span>Delete</span>
+          </button>
+  </div>
+</div>
