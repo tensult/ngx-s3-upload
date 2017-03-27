@@ -15,7 +15,7 @@
         <i class="glyphicon glyphicon-ban-circle"></i>
         <span>Cancel all</span>
     </button>
-    <button [disabled]="!files.length" class="btn btn-danger delete" (click)="deleteAll()">
+    <button [disabled]="!files.length" class="btn btn-danger delete" (click)="deleteAll()" title="Deletes inactive uploads">
         <i class="glyphicon glyphicon-trash"></i>
         <span>Delete all</span>
     </button>

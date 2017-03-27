@@ -22,14 +22,19 @@ export class UploadContainerComponent {
 
   private handleFileUploadEvent(fileObject: FileObject) {
     if (fileObject.status === FileObjectStatus.Deleted) {
-      this.files.splice(fileObject.index, 1);
+      for (let i = 0; i < this.files.length; i++) {
+        if (this.files[i] === fileObject) {
+          this.files.splice(i, 1);
+        }
+      }
     }
   }
 
   fileChangeEvent(fileInput: any) {
     if (fileInput.target.files && fileInput.target.files.length) {
       for (let i = 0; i < fileInput.target.files.length; i++) {
-        this.files.push(new FileObject(fileInput.target.files[i], i));
+        const fileObject = new FileObject(fileInput.target.files[i]);
+        this.files.push(fileObject);
       }
     }
   }
@@ -46,6 +51,6 @@ export class UploadContainerComponent {
 
   deleteAll() {
     console.log('removing all');
-    this.files = [];
+    this.uploadService.publishUploadContainerEvent(ContainerEvents.Delete);
   }
 }

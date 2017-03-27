@@ -13,15 +13,18 @@
     <p *ngIf="progress > 0"  class="speed text-center">{{speed | fileSize}}/s</p>
   </div>
   <div class="col-sm-4">
-    <button class="btn btn-primary start" (click)="upload()">
+    <button [disabled]="fileObject.status === FileObjectStatus.Uploading" 
+    class="btn btn-primary start" (click)="upload()">
               <i class="glyphicon glyphicon-upload"></i>
               <span>Start</span>
     </button>
-    <button [disabled]="fileObject.status !== FileObjectStatus.Uploading" class="btn btn-warning cancel" (click)="cancel()">
+    <button [disabled]="fileObject.status !== FileObjectStatus.Uploading" 
+    class="btn btn-warning cancel" (click)="cancel()">
               <i class="glyphicon glyphicon-ban-circle"></i>
               <span>Cancel</span>
     </button>
-    <button class="btn btn-danger delete" (click)="delete()">
+    <button [disabled]="fileObject.status === FileObjectStatus.Uploading" 
+    class="btn btn-danger delete" (click)="delete()">
             <i class="glyphicon glyphicon-trash"></i>
             <span>Delete</span>
     </button>

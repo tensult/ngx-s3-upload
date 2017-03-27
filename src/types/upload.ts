@@ -15,5 +15,5 @@ export enum FileObjectStatus {
 export class FileObject {
   status = FileObjectStatus.NotStarted;
 
-  constructor(public file: File, public index: number) { }
+  constructor(public file: File) { }
 }

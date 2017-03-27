@@ -21,7 +21,7 @@ export class FileUploadComponent implements OnDestroy {
   constructor(private uploadService: UploadService) {
     this.containerEventSubscription = uploadService.uploadContrainerEvent$.subscribe(
       containerEvent => this.handleContainerEvent(containerEvent)
-      );
+    );
   }
 
   private handleContainerEvent(containerEvent: ContainerEvents) {
@@ -35,22 +35,23 @@ export class FileUploadComponent implements OnDestroy {
   }
 
   upload() {
-    console.log('uploading', this.fileObject.index);
+    console.log('uploading', this.fileObject.file.name);
     this.fileObject.status = FileObjectStatus.Uploading;
   }
   cancel() {
-    console.log('cancelling', this.fileObject.index);
+    console.log('cancelling', this.fileObject.file.name);
     this.fileObject.status = FileObjectStatus.Canceled;
   }
   delete() {
-    console.log('deleting', this.fileObject.index);
-    this.fileObject.status = FileObjectStatus.Deleted;
-    this.uploadService.publishFileUploadEvent(this.fileObject);
+    if (this.fileObject.status !== FileObjectStatus.Uploading) {
+      console.log('deleting', this.fileObject.file.name);
+      this.fileObject.status = FileObjectStatus.Deleted;
+      this.uploadService.publishFileUploadEvent(this.fileObject);
+    }
   }
 
   ngOnDestroy() {
     // prevent memory leak when component destroyed
-    this.cancel();
     this.containerEventSubscription.unsubscribe();
   }
 }
