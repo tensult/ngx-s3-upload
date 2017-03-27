@@ -1,0 +1,12 @@
+div.file-row.odd{
+    background: #eee; 
+}
+
+div.file-row {
+    padding: 10px 0;
+}
+
+.progress {
+    background: none;
+    border: 1px #ccc solid;
+}

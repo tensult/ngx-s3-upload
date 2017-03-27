@@ -34,25 +34,3 @@ body {
     direction: ltr;
     cursor: pointer;
 }
-
-/* Mimic table appearance */
-
-div.table {
-    display: table;
-}
-
-div.table .file-row {
-    display: table-row;
-}
-
-div.table .file-row>div {
-    display: table-cell;
-    vertical-align: top;
-    border-top: 1px solid #ddd;
-    padding: 8px;
-}
-
-div.table .file-row:nth-child(odd) {
-    background: #f9f9f9;
-}
-

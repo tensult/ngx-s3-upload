@@ -30,6 +30,6 @@
         </span>
   </div>
   <div class="table table-striped files col-lg-12" id="previews">
-    <app-file-upload *ngFor="let file of files" [fileObject]="file"></app-file-upload>
+    <app-file-upload *ngFor="let file of files; let oddRow=odd;" [oddRow]="oddRow" [fileObject]="file"></app-file-upload>
   </div>
 </div>
