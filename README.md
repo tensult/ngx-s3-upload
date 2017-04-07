@@ -21,6 +21,7 @@
 * Create cognito identity pool and associate with user pool.
 * Associate role with PutObject permission for your upload buckets.
 * Update src/app/auth/config.ts accordingly.
+* For more info read [this](http://blogs.tensult.com/2017/04/03/S3_Direct_upload_with_Cognito_authentication/).
 
 # Ng2-S3-Upload
 
