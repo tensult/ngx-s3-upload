@@ -1,0 +1,28 @@
+.apps {
+    width: 800px;
+    float: left;
+    display: -webkit-flex;
+    /* Safari */
+    -webkit-flex-wrap: wrap;
+    /* Safari 6.1+ */
+    display: flex;
+    flex-wrap: wrap;
+    .app {
+        width: 50%;
+        h3 {
+            margin-top: 0;
+        }
+    }
+}
+
+.row {
+    clear: both;
+}
+
+.frontside {
+    margin-bottom: 30px
+}
+
+.section-title {
+    margin-bottom: 50px
+}

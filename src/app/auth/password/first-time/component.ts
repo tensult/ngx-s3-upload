@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service';
-import {SigninForm} from '../../types';
+import { SignupForm } from '../../types';
 
 @Component({
   selector: 'app-password',
@@ -13,7 +13,9 @@ export class FirstTimePasswordComponent {
   confirmPassword: string;
   submissionError: string;
   submitted = false;
-  formErrors: SigninForm = {};
+  statusMessage: string;
+  statusClass: string;
+  formErrors: SignupForm = {};
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -41,10 +43,12 @@ export class FirstTimePasswordComponent {
       (err, statusCode) => {
         this.submitted = false;
         if (statusCode === AuthService.statusCodes.signedIn) {
-          this.router.navigate(['']);
+          this.statusMessage = 'Password change is successful. You will be redirected to signin page within 5 seconds';
+          this.statusClass = 'alert-success';
+          setTimeout(() => { this.authService.signout(); }, 4000);
           return;
         } else if (statusCode === AuthService.statusCodes.incompletedSigninData) {
-          this.router.navigate(['signin']);
+          this.router.navigate(['']);
           return;
         } else if (statusCode === AuthService.statusCodes.unknownError) {
           this.submissionError = err.message;

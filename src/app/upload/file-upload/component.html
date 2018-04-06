@@ -11,8 +11,8 @@
   <div class="col-lg-4 text-right">
     <p class="size">{{fileObject.file.size | fileSize}}</p>
     <div class="progress">
-      <div [ngClass]="{'progress-bar': true, 'progress-bar-striped': true, 'progress-bar-success': fileObject.status !== FileObjectStatus.Failed, 'progress-bar-danger': fileObject.status === FileObjectStatus.Failed }" role="progressbar" [ngStyle]="{'width': progress + '%'}" aria-valuenow="progress"
-        aria-valuemin="0" aria-valuemax="100">
+      <div [ngClass]="{'progress-bar': true, 'progress-bar-striped': true, 'progress-bar-success': fileObject.status !== FileObjectStatus.Failed, 'progress-bar-danger': fileObject.status === FileObjectStatus.Failed }"
+        role="progressbar" [ngStyle]="{'width': progress + '%'}" aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100">
         <strong *ngIf="progress > 0">{{progress}}%</strong>
       </div>
     </div>
@@ -20,16 +20,16 @@
   </div>
   <div class="col-lg-4 text-right">
     <button [disabled]="fileObject.status === FileObjectStatus.Uploading" class="btn btn-success start" (click)="upload()">
-              <i class="glyphicon glyphicon-upload"></i>
-              <strong>Upload</strong>
+      <i class="glyphicon glyphicon-upload"></i>
+      <strong>Upload</strong>
     </button>
     <button [disabled]="fileObject.status !== FileObjectStatus.Uploading" class="btn btn-warning cancel" (click)="cancel()">
-              <i class="glyphicon glyphicon-ban-circle"></i>
-              <strong>Cancel</strong>
+      <i class="glyphicon glyphicon-ban-circle"></i>
+      <strong>Cancel</strong>
     </button>
     <button [disabled]="fileObject.status === FileObjectStatus.Uploading" class="btn btn-danger delete" (click)="clear()">
-            <i class="glyphicon glyphicon-trash"></i>
-            <strong>Clear</strong>
+      <i class="glyphicon glyphicon-trash"></i>
+      <strong>Clear</strong>
     </button>
   </div>
 </div>

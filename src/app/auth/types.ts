@@ -1,14 +1,18 @@
+import { Dictionary } from '../../types';
+
 export class User {
   static default = new User(false);
-  constructor(public signedIn: boolean, public username?: string) { }
+  constructor(public signedIn: boolean, public username?: string, public userId?: string) { }
 }
 
-export interface SigninData {
+export interface SignupData {
   username?: string;
   password?: string;
   newPassword?: string;
+  verificationCode?: string;
+  additionalData?: Dictionary<string>;
 }
 
-export interface SigninForm extends SigninData {
+export interface SignupForm extends SignupData {
   confirmPassword?: string;
 }

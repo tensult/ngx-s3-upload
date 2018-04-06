@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UploadService } from './service';
 import { ContainerEvents, FileObject, FileObjectStatus } from './types';
 import { AuthService, User } from '../auth';
+import { URLUtil } from '../../utils';
 
 /**
  * Contrainer for all uploads.
@@ -48,24 +49,34 @@ export class UploadContainerComponent implements OnInit {
   }
 
   uploadAll() {
-    console.log('uploading all');
     this.uploadService.publishUploadContainerEvent(ContainerEvents.Upload);
   }
 
   cancelAll() {
-    console.log('aborting all');
     this.uploadService.publishUploadContainerEvent(ContainerEvents.Cancel);
   }
 
   clearAll() {
-    console.log('clearing all');
     this.uploadService.publishUploadContainerEvent(ContainerEvents.Delete);
   }
 
   ngOnInit() {
-    this.signedInUser = this.authService.getCurrentUser();
-    if (!this.signedInUser || !this.signedInUser.signedIn) {
-      this.router.navigate(['signin']);
+    this.authService.getCurrentUser((err, user: User) => {
+      this.signedInUser = user;
+      this.uploadService.setSignedInUser(this.signedInUser);
+      if (!this.signedInUser || !this.signedInUser.signedIn) {
+        // this.authService.redirectToSignin(this.router.routerState.snapshot.root.queryParams);
+        this.router.navigate(['signin']);
+        return;
+      }
+    });
+    this.setRegion();
+  }
+
+  setRegion() {
+    const queryParams = this.router.routerState.snapshot.root.queryParams;
+    if (queryParams && queryParams.region) {
+      this.uploadService.setRegion(queryParams.region);
     }
   }
 }

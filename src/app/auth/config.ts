@@ -1,8 +1,8 @@
 export let cognito = {
   userPool: {
-    UserPoolId: '<UserPoolId>',
-    ClientId: '<ClientId>',
-    region: '<region>'
+    UserPoolId: 'us-east-1_o07i6UNpK',
+    ClientId: 'a3us4rrhlvcso6eid68c5ue91',
+    region: 'us-east-1'
   },
-  identityPoolId: '<identityPoolId>'
+  identityPoolId: 'us-east-1:cf1c1866-5331-409a-808e-dfa1925bf9fc'
 };

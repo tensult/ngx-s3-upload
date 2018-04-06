@@ -1,8 +1,12 @@
-<div class="password">
+<app-header></app-header>
+<div class="row password justify-content-center">
   <div class="col-lg-5 element-center">
     <form #passwordFrom="ngForm" (ngSubmit)="updatePassword($event)" method="post">
       <h2 class="text-capitalize">Enter New Password</h2>
       <p>First time signed in users must update their password.</p>
+      <p *ngIf="statusMessage" class="alert {{statusClass}}" >
+        {{statusMessage}}
+      </p>
       <div class="form-group">
         <input type="password" id="inputPassword" [(ngModel)]="newPassword" class="form-control" placeholder="New Password" name="newPassword" required>
         <div *ngIf="formErrors && formErrors.newPassword" class="alert alert-danger">
@@ -25,5 +29,7 @@
         </button>
       </div>
     </form>
+    <app-loading *ngIf="submitted"></app-loading>
   </div>
 </div>
+<app-footer></app-footer>

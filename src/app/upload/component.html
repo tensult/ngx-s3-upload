@@ -1,30 +1,16 @@
-<div class="uploads">
-  <div class="main-container">
-    <h2 class="section-heading text-capitalize text-center">Upload files</h2>
-    <div class="buttons">
-      <label for="inputFiles" class="btn  btn-info file-input-btn">
-        <i class="glyphicon glyphicon-plus"></i>
-        <strong>Add files...</strong>
-        <input id="inputFiles" name="files[]" multiple="" type="file" (change)="fileChangeEvent($event)">
+<app-header></app-header>
+<div class="upload">
+    <h2 class="section-title text-center">Upload Files</h2>
+    <label class="btn btn-primary file-input-btn">
+      Add files
+      <input type="file" hidden name="files[]" multiple="" type="file" (change)="fileChangeEvent($event)">
     </label>
-      <button [disabled]="!files.length" class="btn btn-success start" (click)="uploadAll()">
-        <i class="glyphicon glyphicon-upload"></i>
-        <strong>Upload all</strong>
-    </button>
-      <button [disabled]="!files.length" class="btn btn-warning cancel" (click)="cancelAll()">
-        <i class="glyphicon glyphicon-ban-circle"></i>
-        <strong>Cancel all</strong>
-    </button>
-      <button [disabled]="!files.length" class="btn btn-danger clear" (click)="clearAll()" title="Clears inactive uploads">
-        <i class="glyphicon glyphicon-trash"></i>
-        <strong>Clear all</strong>
-    </button>
+    <button type="button" class="btn btn-success" [disabled]="!files.length" (click)="uploadAll()">Upload all</button>
+    <button type="button" class="btn btn-warning" [disabled]="!files.length" (click)="cancelAll()">Cancel all</button>
+    <button type="button" class="btn btn-danger" [disabled]="!files.length" (click)="clearAll()">Clear all</button>
+    <a [routerLink]="['/files']" class="btn btn-link" role="button">Downloads</a>
+    <div class="files previews">
+      <app-file-upload *ngFor="let file of files; let oddRow=odd;" [oddRow]="oddRow" [fileObject]="file"></app-file-upload>
     </div>
-    <div class="links">
-      <a routerLink="/signout"><strong>Signout</strong></a>
-    </div>
-  </div>
-  <div class="files" id="previews">
-    <app-file-upload *ngFor="let file of files; let oddRow=odd;" [oddRow]="oddRow" [fileObject]="file"></app-file-upload>
-  </div>
 </div>
+<app-footer></app-footer>

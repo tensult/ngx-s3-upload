@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { AuthService } from '../service';
 import { Router } from '@angular/router';
-import {SigninForm} from '../types';
+import { SignupForm } from '../types';
 
 @Component({
   selector: 'app-signin',
@@ -18,7 +18,9 @@ export class SigninComponent implements OnInit {
   password: string;
   submissionError: string;
   submitted = false;
-  formErrors: SigninForm = {};
+  formErrors: SignupForm = {};
+  statusMessage: string;
+  statusClass: string;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -36,7 +38,7 @@ export class SigninComponent implements OnInit {
         if (statusCode === AuthService.statusCodes.newPasswordRequired) {
           this.router.navigate(['first-time-password']);
         } else if (statusCode === AuthService.statusCodes.signedIn) {
-          this.router.navigate(['']);
+          this.authService.handleRedirect();
           return;
         } else if (statusCode === AuthService.statusCodes.noSuchUser) {
           this.submissionError = 'Email or password is not valid.';
@@ -47,11 +49,11 @@ export class SigninComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('Inside SigninComponent');
-    const currentSignedInUser = this.authService.getCurrentUser();
-    console.log('Inside SigninComponent', currentSignedInUser);
-    if (currentSignedInUser && currentSignedInUser.signedIn) {
-      this.router.navigate(['']);
-    }
+    this.authService.setPreviousAppParams(this.router.routerState.snapshot.root.queryParams);
+    this.authService.getCurrentUser((err, currentSignedInUser) => {
+      if (currentSignedInUser && currentSignedInUser.signedIn) {
+        this.authService.handleRedirect();
+      }
+    });
   }
 }

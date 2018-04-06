@@ -1,0 +1,44 @@
+<app-header></app-header>
+<div class="row password justify-content-center">
+  <div class="col-lg-5 element-center">
+    <form #passwordFrom="ngForm" (ngSubmit)="resetPassword($event)" method="post">
+      <h2 class="text-capitalize">Enter New Password</h2>
+      <p>Please enter the verification code sent to your email.</p>
+      <p *ngIf="statusMessage" class="alert {{statusClass}}">
+        {{statusMessage}}
+      </p>
+      <div class="form-group">
+        <input type="password" id="inputVerificationCode" [(ngModel)]="verificationCode" class="form-control" placeholder="Verification code"
+          name="verificationCode" required>
+        <div *ngIf="formErrors && formErrors.verificationCode" class="alert alert-danger">
+          {{ formErrors.verificationCode }}
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="password" id="inputPassword" [(ngModel)]="newPassword" class="form-control" placeholder="New Password" name="newPassword"
+          required>
+        <div *ngIf="formErrors && formErrors.newPassword" class="alert alert-danger">
+          {{ formErrors.newPassword }}
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="password" id="inputPassword" [(ngModel)]="confirmPassword" class="form-control" placeholder="Confirm New Password"
+          name="confirmPassword" required>
+        <div *ngIf="formErrors && formErrors.confirmPassword" class="alert alert-danger">
+          {{ formErrors.confirmPassword }}
+        </div>
+      </div>
+      <div *ngIf="submissionError" class="alert alert-danger">
+        {{ submissionError }}
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary text-capitalize btn-block" type='submit' [disabled]="!passwordFrom.form.valid || submitted">
+          <i class="fa fa-lock" aria-hidden="true"></i>
+          Update Password
+        </button>
+      </div>
+    </form>
+    <app-loading *ngIf="submitted"></app-loading>
+  </div>
+</div>
+<app-footer></app-footer>

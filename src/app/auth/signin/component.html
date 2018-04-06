@@ -1,7 +1,11 @@
-<div class="sign">
-  <div class="col-lg-4 element-center">
+<app-header></app-header>
+<div class="row signin justify-content-center">
+  <div class="col-lg-4 text-center element-center">
     <form #signinFrom="ngForm" (ngSubmit)="signin($event)" method="post">
       <h2 class="form-signin-heading text-capitalize">Please sign in</h2>
+      <p *ngIf="statusMessage" class="alert {{statusClass}}" >
+        {{statusMessage}}
+      </p>
       <div class="form-group">
         <label for="inputUsername" class="sr-only">Email address</label>
         <input type="email" id="inputUsername" [(ngModel)]="username" placeholder="Email address" class="form-control" name="username"
@@ -21,6 +25,9 @@
       <div *ngIf="submissionError" class="alert alert-danger">
         {{ submissionError }}
       </div>
+      <div class="form-group">
+        <a routerLink="/forgot-password"><strong>Forgot Password?</strong></a>
+      </div>
 
       <div class="form-group">
         <button class="btn btn-lg btn-primary text-capitalize btn-block" type='submit' [disabled]="!signinFrom.form.valid || submitted">
@@ -29,5 +36,7 @@
         </button>
       </div>
     </form>
+    <app-loading *ngIf="submitted"></app-loading>
   </div>
 </div>
+<app-footer></app-footer>

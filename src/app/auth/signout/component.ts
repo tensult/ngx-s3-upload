@@ -13,8 +13,6 @@ export class SignoutComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    console.log('Inside SignoutComponent');
     this.authService.signout();
-    this.router.navigate(['signin']);
   }
-}
+} 

@@ -1,32 +1,52 @@
-.uploads {
-    margin: 10px;
+// .uploads {
+//     margin: 10px;
+//     margin-top: 20px; 
+// }
+
+// .uploads label.file-input-btn {
+//     margin: 0;
+// }
+
+// #inputFiles {
+//     position: absolute;
+//     top: -300px;
+//     right: -300px;
+//     margin: 0;
+//     opacity: 0;
+//     filter: alpha(opacity=0);
+//     font-size: 23px;
+//     direction: ltr;
+//     cursor: pointer;
+// }
+
+// .uploads {
+//     .buttons {
+//         float: left;
+//     }
+// }
+
+// .links a h4 {
+//     display: inline-block;
+// }
+
+// .links a {
+//     margin-right: 10px;
+// }
+
+// .links a:last-child{
+//     margin-right: 0px;
+// }
+
+.section-title {
+    margin-bottom: 50px
 }
 
-.uploads label.file-input-btn {
-    margin: 0;
+.file-input-btn {
+    margin-bottom: 0
 }
 
-#inputFiles {
-    position: absolute;
-    top: -300px;
-    right: -300px;
-    margin: 0;
-    opacity: 0;
-    filter: alpha(opacity=0);
-    font-size: 23px;
-    direction: ltr;
-    cursor: pointer;
-}
-
-.uploads {
-    .buttons {
-        float: left;
+.upload {
+    .previews {
+        margin: 0 10px
     }
-    .links {
-        float: right;
-    }
-}
-
-.files {
-    clear: both;
 }

@@ -1,0 +1,29 @@
+<div class="password">
+  <div class="col-lg-5 element-center">
+    <form #passwordFrom="ngForm" (ngSubmit)="updatePassword($event)" method="post">
+      <h2 class="text-capitalize">Enter New Password</h2>
+      <p>First time signed in users must update their password.</p>
+      <div class="form-group">
+        <input type="password" id="inputPassword" [(ngModel)]="newPassword" class="form-control" placeholder="New Password" name="newPassword" required>
+        <div *ngIf="formErrors && formErrors.newPassword" class="alert alert-danger">
+          {{ formErrors.newPassword }}
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="password" id="inputPassword" [(ngModel)]="confirmPassword" class="form-control" placeholder="Confirm New Password" name="confirmPassword" required>
+        <div *ngIf="formErrors && formErrors.confirmPassword" class="alert alert-danger">
+          {{ formErrors.confirmPassword }}
+        </div>
+      </div>
+      <div *ngIf="submissionError" class="alert alert-danger">
+        {{ submissionError }}
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary text-capitalize btn-block" type='submit' [disabled]="!passwordFrom.form.valid || submitted">
+          <i class="fa fa-lock" aria-hidden="true"></i>
+          Update Password
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

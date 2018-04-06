@@ -1,0 +1,27 @@
+<app-header></app-header>
+<div class="row password justify-content-center">
+  <div class="col-lg-4 element-center">
+    <form #passwordFrom="ngForm" (ngSubmit)="forgotPassword($event)" method="post">
+      <h2 class="text-capitalize">Forgot Password?</h2>
+      <p>You can reset your password here.</p>
+      <div class="form-group">
+        <input type="email" id="inputUsername" [(ngModel)]="username" class="form-control" placeholder="Email address" name="username" required>
+        <div *ngIf="formErrors && formErrors.username" class="alert alert-danger">
+          {{ formErrors.username }}
+        </div>
+      </div>
+
+      <div *ngIf="submissionError" class="alert alert-danger">
+        {{ submissionError }}
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary text-capitalize btn-block" type='submit' [disabled]="!passwordFrom.form.valid || submitted">
+          <i class="fa fa-lock" aria-hidden="true"></i>
+          Reset Password
+        </button>
+      </div>
+    </form>
+    <app-loading *ngIf="submitted"></app-loading>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -1,24 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
-import { AuthService } from '../auth';
-import { ContainerEvents, FileObject, S3Config } from './types';
+import { User } from '../auth/types';
+import { ContainerEvents, FileObject } from './types';
 import { S3 } from 'aws-sdk';
-import * as dateFormat from 'dateformat';
-import { s3Config } from './config';
+import { S3Factory } from '../../utils';
+import { s3Config } from '../../config';
 
-const folderFormat = 'UTC:yyyy/mm/dd/hh';
 
-export class S3Factory {
-  private static s3Clients = {};
-  static getS3(regionName?: string) {
-    regionName = regionName || s3Config.default;
-    if (!S3Factory.s3Clients[regionName]) {
-      S3Factory.s3Clients[regionName] = new S3({ region: regionName });
-    }
-    return S3Factory.s3Clients[regionName];
-  }
-}
 @Injectable()
 export class UploadService {
 
@@ -29,8 +18,16 @@ export class UploadService {
   // Observable string streams
   uploadContrainerEvent$ = this.uploadContainerEventSource.asObservable();
   fileUploadEvent$ = this.fileUploadEventSource.asObservable();
+  private signedInUser: User;
+  private defaultRegion: string;
 
-  constructor(private authService: AuthService) { }
+  constructor() {
+    this.defaultRegion = 'ap-south-1';
+  }
+
+  setSignedInUser(user: User) {
+    this.signedInUser = user;
+  }
 
   // Upload status updates
   publishUploadContainerEvent(event: ContainerEvents) {
@@ -41,22 +38,46 @@ export class UploadService {
     this.fileUploadEventSource.next(file);
   }
 
-  private preparePutObjectRequest(file: File, username: string): S3.Types.PutObjectRequest {
-    return {
-      Key: [username, dateFormat(new Date(), folderFormat), file.name].join('/'),
-      Bucket: s3Config['ap-south-1'],
+  setRegion(region: string) {
+    this.defaultRegion = region;
+  }
+
+  private preparePutObjectRequest(file: File, region: string): S3.Types.PutObjectRequest {
+    const now = new Date();
+    const obj = {
+      Key: [this.signedInUser.username,
+      this.signedInUser.userId,
+      now.getUTCFullYear(),
+      now.getUTCMonth(),
+      now.getUTCDate(),
+      file.name].join('/'),
+      Bucket: s3Config[region],
       Body: file,
       ContentType: file.type
     };
+    console.log(obj);
+    return obj;
+    
+    // return {
+    //   Key: [this.signedInUser.username,
+    //   this.signedInUser.userId,
+    //   now.getUTCFullYear(),
+    //   now.getUTCMonth(),
+    //   now.getUTCDate(),
+    //   file.name].join('/'),
+    //   Bucket: s3Config[region],
+    //   Body: file,
+    //   ContentType: file.type
+    // };
   }
 
   upload(file: File, progressCallback: (error: Error, progress: number, speed: number) => void, region?: string) {
-    const currentUser = this.authService.getCurrentUser();
-    if (!currentUser.signedIn) {
-      progressCallback(new Error('User session is expired'), undefined, undefined);
+    if (!this.signedInUser) {
+      progressCallback(new Error('User not signed in'), undefined, undefined);
       return;
     }
-    const s3Upload = S3Factory.getS3(region).upload(this.preparePutObjectRequest(file, currentUser.username));
+    region = region || this.defaultRegion;
+    const s3Upload = S3Factory.getS3(region).upload(this.preparePutObjectRequest(file, region));
     s3Upload.on('httpUploadProgress', this.handleS3UploadProgress(progressCallback));
     s3Upload.send(this.handleS3UploadComplete(progressCallback));
     return s3Upload;

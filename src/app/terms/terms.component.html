@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div class="row terms justify-content-center">
+  <div class="col-lg-5 element-center">
+    <h2 class="text-capitalize">Service usage terms</h2>
+    <p>
+      We are using modified version of a open source software:
+      <a href='https://github.com/tensult/Scout2' target='_blank'>Scout 2</a> which is licensed under this
+      <a href='https://github.com/nccgroup/Scout2/blob/master/LICENSE'>license</a>.
+    </p>
+
+    <div class="buttons" *ngIf="showButtons">
+      <div *ngIf="submissionStatus" class="alert {{submissionStatusClass}}">
+        {{ submissionStatus }}
+      </div>
+      <div class="form-group text-center">
+        <button class="btn btn-lg btn-primary text-capitalize" (click)="agree()" [disabled]="submitted">
+            Agree 
+          </button> &nbsp;
+        <button class="btn btn-lg text-capitalize" (click)="disagree()" [disabled]="submitted">
+            Disagree
+          </button>
+      </div>
+    </div>
+    <div class="acceptance" *ngIf="termsAcceptedOn">
+      <strong>You have already accepted these terms on <span class="text-primary">{{termsAcceptedOn}}</span></strong>
+    </div>
+    <app-loading *ngIf="loading"></app-loading>
+  </div>
+</div>
+<app-footer></app-footer>
