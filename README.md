@@ -15,39 +15,35 @@
 </CORSRule>
 </CORSConfiguration>
 ```
-
 # Amazon Cognito Setup
 * Create cognito user pool.
 * Create cognito identity pool and associate with user pool.
 * Associate role with PutObject permission for your upload buckets.
 * Update src/app/auth/config.ts accordingly.
-* For more info read [this](http://blogs.tensult.com/2017/04/03/S3_Direct_upload_with_Cognito_authentication/).
+* For more info read [this](https://medium.com/tensult/s3-direct-upload-with-cognito-authentication-56a5c0ff4916).
 
-# Ng2-S3-Upload
+# Home page
+When you start application, first this page will be opened.
+![home](https://user-images.githubusercontent.com/30007458/38555020-4ccdb3ec-3ce2-11e8-966d-431680d6cd5b.png)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.4.
+# Signin page
+![signin](https://user-images.githubusercontent.com/30007458/38555175-d204ee86-3ce2-11e8-9383-7ca1d570a06c.png)
 
-## Development server
+# Upload page
+* After signin this page will be opened. 
+* You can add one file or multiple files by clicking on `add files` button.
+![upload](https://user-images.githubusercontent.com/30007458/38555258-243eae76-3ce3-11e8-86c5-fe79fabbfb2a.png)
+* After adding one file or multiple files, you can upload those files by clicking on `upload all` button or individually by clicking on `upload` button. 
+* Also you can clear and cancel.
+![upload-1](https://user-images.githubusercontent.com/30007458/38555284-35fd3f06-3ce3-11e8-9f71-aeb034e83afe.png)
+* You can signout by clicking on `signout` link.
+![signout](https://user-images.githubusercontent.com/30007458/38556442-54068062-3ce7-11e8-9dee-33d32a92fe12.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Uploaded files
+* After clicking on `Downloads` link from upload page, this page will be opened. 
+* Here you can see those files you uploaded.
+![downloads](https://user-images.githubusercontent.com/30007458/38556505-8c08bc5a-3ce7-11e8-8ddd-d83c28de6680.png)
 
-## Code scaffolding
+**Note:**
+We are uploading files at a folder named by your email in S3 bucket. 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
