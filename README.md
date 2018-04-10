@@ -27,6 +27,7 @@
 ![home](https://user-images.githubusercontent.com/30007458/38555020-4ccdb3ec-3ce2-11e8-966d-431680d6cd5b.png)
 
 # Signin page
+* You have to do signin first for accessing *upload* feature.
 ![signin](https://user-images.githubusercontent.com/30007458/38555175-d204ee86-3ce2-11e8-9383-7ca1d570a06c.png)
 
 # Upload page
@@ -39,7 +40,7 @@
 * You can signout by clicking on `signout` link.
 ![signout](https://user-images.githubusercontent.com/30007458/38556442-54068062-3ce7-11e8-9dee-33d32a92fe12.png)
 
-# Uploaded files
+# Uploaded files page
 * After clicking on `Downloads` link from upload page, this page will be opened. 
 * Here you can see those files you uploaded.
 ![downloads](https://user-images.githubusercontent.com/30007458/38556505-8c08bc5a-3ce7-11e8-8ddd-d83c28de6680.png)
