@@ -23,7 +23,7 @@
 * For more info read [this](https://medium.com/tensult/s3-direct-upload-with-cognito-authentication-56a5c0ff4916).
 
 # Home page
-When you start application, first this page will be opened.
+* When you start application, first this page will be opened.
 ![home](https://user-images.githubusercontent.com/30007458/38555020-4ccdb3ec-3ce2-11e8-966d-431680d6cd5b.png)
 
 # Signin page
