@@ -7,6 +7,7 @@
 <CORSRule>
     <AllowedOrigin>*</AllowedOrigin>
     <AllowedMethod>PUT</AllowedMethod>
+    <AllowedMethod>GET</AllowedMethod>
     <AllowedMethod>POST</AllowedMethod>
     <AllowedMethod>DELETE</AllowedMethod>
     <MaxAgeSeconds>3000</MaxAgeSeconds>
