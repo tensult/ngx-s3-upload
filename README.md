@@ -1,6 +1,6 @@
 # Amazon S3 Setup
 * Create Bucket for uploads and update src/app/upload/config.ts file accordingly.
-* Enable CORS following CORS permissions to upload.
+* Enable CORS on S3 bucket with following CORS permissions.
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
