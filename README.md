@@ -1,5 +1,5 @@
 # Amazon S3 Setup
-* Create Bucket for uploads and update src/app/upload/config.ts file accordingly.
+* Create Bucket for uploads and update [src/config/s3.ts](https://github.com/tensult/ngx-s3-upload/blob/master/src/config/s3.ts) accordingly.
 * Enable CORS on S3 bucket with following CORS permissions.
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -20,7 +20,7 @@
 * Create cognito user pool.
 * Create cognito identity pool and associate with user pool.
 * Associate role for authenticated users with cognito identity pool with PutObject permission to the S3 buckets. You can also refer to the my identity pool [policy](https://gist.github.com/koladilip/3b70c313a7071d12a83b818efa1abc75/).
-* Update src/app/auth/config.ts accordingly.
+* Update [src/app/auth/config.ts](https://github.com/tensult/ngx-s3-upload/blob/master/src/app/auth/config.ts) accordingly.
 * For more info read [this](https://medium.com/tensult/s3-direct-upload-with-cognito-authentication-56a5c0ff4916).
 
 # Home page
