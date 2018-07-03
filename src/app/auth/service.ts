@@ -78,7 +78,6 @@ export class AuthService {
                 if (err.code === 'UserNotFoundException' || err.code === 'NotAuthorizedException') {
                     callback(err, AuthService.statusCodes.noSuchUser);
                 } else {
-                    console.error(err);
                     callback(err, AuthService.statusCodes.unknownError);
                 }
             },
@@ -247,7 +246,6 @@ export class AuthService {
         // call refresh method in order to authenticate user and get new temp credentials
         this.cognitoAwsCredentials.refresh((err: AWSError) => {
             if (err) {
-                console.error(err);
                 callback(err);
             } else {
                 AWSConfig.credentials = this.cognitoAwsCredentials;

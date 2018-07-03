@@ -49,7 +49,6 @@ export class DownloadComponent implements OnInit {
            return row;
         })
         }).catch((error) => {
-          console.error(error);
         }) ;        
       }
     });

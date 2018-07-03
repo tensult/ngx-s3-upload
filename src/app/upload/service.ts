@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { User } from '../auth/types';
 import { ContainerEvents, FileObject } from './types';
 import { S3 } from 'aws-sdk';
@@ -55,7 +55,6 @@ export class UploadService {
       Body: file,
       ContentType: file.type
     };
-    console.log(obj);
     return obj;
     
     // return {

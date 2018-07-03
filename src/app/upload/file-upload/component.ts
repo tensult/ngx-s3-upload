@@ -6,7 +6,7 @@ import {
 } from '../types';
 import { Router } from '@angular/router';
 import { UploadService } from '../service';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { S3 } from 'aws-sdk';
 /**
  * Single file upload component.
@@ -51,7 +51,6 @@ export class FileUploadComponent implements OnDestroy {
   }
 
   private handleS3UploadProgress() {
-    console.log('inside component handleS3UploadProgress()');
     return (error: Error, progress: number, speed: number) => {
       if (error) {
         this.progress = 0;
@@ -70,7 +69,6 @@ export class FileUploadComponent implements OnDestroy {
 
   cancel() {
     if (this.fileObject.status === FileObjectStatus.Uploading) {
-      console.log('cancelling', this.fileObject.file.name);
       this.fileObject.status = FileObjectStatus.Canceled;
       this.uploadService.cancel(this.uploadHandle);
     }
@@ -78,7 +76,6 @@ export class FileUploadComponent implements OnDestroy {
 
   clear() {
     if (this.fileObject.status !== FileObjectStatus.Uploading) {
-      console.log('clearing', this.fileObject.file.name);
       this.fileObject.status = FileObjectStatus.Deleted;
       this.uploadService.publishFileUploadEvent(this.fileObject);
     }

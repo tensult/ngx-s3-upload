@@ -29,9 +29,9 @@ export class FirstTimePasswordComponent {
     return isValid;
   }
 
-  updatePassword($event) {
+  updatePassword(event) {
     // Disable default submission.
-    $event.preventDefault();
+    event.preventDefault();
     if (!this.validateNewPassword()) {
       return;
     }

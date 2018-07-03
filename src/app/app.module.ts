@@ -46,7 +46,7 @@ import {FooterComponent} from './footer/component';
     FileUploadComponent,
     UploadContainerComponent,
     HeaderComponent,
-    FooterComponent,
+    FooterComponent
   ],
   imports: [
     AppRoutesModule,

@@ -41,7 +41,6 @@ export class UploadContainerComponent implements OnInit {
     if (fileInput.target.files && fileInput.target.files.length) {
       for (let i = 0; i < fileInput.target.files.length; i++) {
         const fileObject = new FileObject(fileInput.target.files[i]);
-        console.log(fileObject);
         this.files.push(fileObject);
       }
     }

@@ -21,12 +21,5 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.baseUrl = URLUtil.getBaseUrl();
-    // this.authService.getCurrentUser((err, signedInUser) => {
-    //   this.signedInUser = signedInUser;
-    //   if (!this.signedInUser || !this.signedInUser.signedIn) {
-    //     this.router.navigate(['']);
-    //     return;
-    //   }
-    // });
   }
 }

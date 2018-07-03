@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { FileSizeUtil } from 'utils';
+import { FileSizeUtil } from './file-size';
 
 
 /*

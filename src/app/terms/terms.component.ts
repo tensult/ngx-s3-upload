@@ -30,7 +30,7 @@ export class TermsComponent implements OnInit {
         this.authService.getUserAttributes((err, userAttributes) => {
           this.loading = false;
           if (err || !userAttributes) {
-            console.error(err, new Error('Unable to retrive user attributes.'));
+            // console.error(err, new Error('Unable to retrive user attributes.'));
             return;
           }
           if (!userAttributes[TermsComponent.termsAcceptTimeKey]) {
@@ -53,7 +53,6 @@ export class TermsComponent implements OnInit {
       this.authService.setUserAttribute(TermsComponent.termsAcceptTimeKey, termsAcceptedOn, (err) => {
         this.loading = false;
         if (err) {
-          console.log(err, new Error("Unable to set terms accepted timestamp.", ));
           this.submissionStatus = "Request failed. Please try again later";
           this.submissionStatusClass = "alert-danger";
         } else {
