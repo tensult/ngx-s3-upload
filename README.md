@@ -1,5 +1,5 @@
 # Get started
-This is an fully woring Angular 6 App to upload to S3 directly from browser using Cognito user and identity pools.
+This is a fully functional Angular 6 App to upload to S3 directly from browser using Cognito user and identity pools.
 ## Installation
 `
 npm install
