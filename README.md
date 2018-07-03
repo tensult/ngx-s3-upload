@@ -2,12 +2,15 @@
 This is a fully functional Angular 6 App to upload to S3 directly from browser using Cognito user and identity pools.
 ## Installation
 `
+git clone https://github.com/tensult/ngx-s3-upload.git
+cd ngx-s3-upload
 npm install
 `
 ## Starting the App
 `
 ng serve
 `
+Once app is successfully started: open http://localhost:4200/ in your browser
 # Configure with you AWS account
 ## Amazon S3 Setup
 * Create Bucket for uploads and update [src/config/s3.ts](https://github.com/tensult/ngx-s3-upload/blob/master/src/config/s3.ts) accordingly.
@@ -27,6 +30,7 @@ ng serve
 </CORSRule>
 </CORSConfiguration>
 ```
+![s3corspolicy](https://user-images.githubusercontent.com/33080863/42218959-e0a7a64e-7ee7-11e8-8535-a66d785e7193.png)
 ## Amazon Cognito Setup
 * Create cognito user pool.
 * Create cognito identity pool and associate with user pool.
