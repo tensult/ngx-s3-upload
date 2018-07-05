@@ -36,7 +36,7 @@ Once app is successfully started: open http://localhost:4200/ in your browser
 * Create cognito user pool.
 * Create cognito identity pool and associate with user pool.
 * Associate role for authenticated users with cognito identity pool with PutObject permission to the S3 buckets. You can also refer to the my identity pool [policy](https://gist.github.com/koladilip/3b70c313a7071d12a83b818efa1abc75/).
-* Update [src/app/auth/config.ts](https://github.com/tensult/ngx-s3-upload/blob/master/src/app/auth/config.ts) accordingly.
+* Update [src/config/cognito.ts](https://github.com/tensult/ngx-s3-upload/blob/master/src/config/cognito.ts) accordingly.
 
 # Sample Screens
 ## Home page

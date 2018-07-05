@@ -10,7 +10,7 @@ import {
 } from 'amazon-cognito-identity-js';
 import { CognitoIdentityCredentials, config as AWSConfig, AWSError } from 'aws-sdk';
 
-import * as Config from './config';
+import { cognitoConfig } from '../../config';
 import { User, SignupData } from './types';
 import { Dictionary } from '../../types';
 import { URLUtil } from '../../utils';
@@ -29,9 +29,9 @@ export class AuthService {
         unknownError: 'unknownError'
     };
 
-    private static userPoolLoginKey = `cognito-idp.${Config.cognito.userPool.region}.amazonaws.com/${Config.cognito.userPool.UserPoolId}`;
+    private static userPoolLoginKey = `cognito-idp.${cognitoConfig.userPool.region}.amazonaws.com/${cognitoConfig.userPool.UserPoolId}`;
 
-    private userPool = new CognitoUserPool(Config.cognito.userPool);
+    private userPool = new CognitoUserPool(cognitoConfig.userPool);
     private previousAppParams: any;
     private signupData: SignupData = {};
     cognitoAwsCredentials: CognitoIdentityCredentials;
@@ -143,9 +143,9 @@ export class AuthService {
             },
             onFailure: (err: Error) => {
                 authService.currentStatus = AuthService.statusCodes.unknownError;
-                callback(err, AuthService.statusCodes.unknownError)
+                callback(err, AuthService.statusCodes.unknownError);
             }
-        })
+        });
     }
 
     signout() {
@@ -157,14 +157,14 @@ export class AuthService {
     }
 
     getUserAttributes(callback: (err?: Error, data?: Dictionary<any>) => void) {
-        this.getCurrentCognitoUser((err, cognitoUser) => {
+        this.getCurrentCognitoUser((err1, cognitoUser) => {
             if (!cognitoUser) {
                 callback(new Error('Cognito User is not found'));
                 return;
             }
-            cognitoUser.getUserAttributes((err?: Error, cognitoAttributes?: CognitoUserAttribute[]) => {
-                if (err) {
-                    callback(err);
+            cognitoUser.getUserAttributes((err2?: Error, cognitoAttributes?: CognitoUserAttribute[]) => {
+                if (err2) {
+                    callback(err2);
                     return;
                 }
                 cognitoAttributes = cognitoAttributes || [];
@@ -194,15 +194,15 @@ export class AuthService {
         this.signupData.additionalData[name] = value;
     }
 
-    private getCurrentCognitoUser(callback: (err?: Error, cognitoUser?: CognitoUser) => void) {
+    private getCurrentCognitoUser(callback: (err1?: Error, cognitoUser?: CognitoUser) => void) {
         const cognitoUser = this.userPool.getCurrentUser();
         if (cognitoUser) {
             cognitoUser.getSession((err: Error, session: CognitoUserSession) => {
                 if (session && session.isValid()) {
                     if (!this.cognitoAwsCredentials || this.cognitoAwsCredentials.needsRefresh()) {
-                        this.updateAWSCredentials(session.getIdToken().getJwtToken(), cognitoUser.getUsername(), (err) => {
-                            if(err) {
-                                callback(err);
+                        this.updateAWSCredentials(session.getIdToken().getJwtToken(), cognitoUser.getUsername(), (err2) => {
+                            if (err2) {
+                                callback(err2);
                             } else {
                                 callback(undefined, cognitoUser);
                             }
@@ -230,17 +230,17 @@ export class AuthService {
         });
     }
 
-    private updateAWSCredentials(sessionToken: string, username: string, callback: (err?: Error) => void ) {
+    private updateAWSCredentials(sessionToken: string, username: string, callback: (err?: Error) => void) {
         const logins = {};
         logins[AuthService.userPoolLoginKey] = sessionToken;
         this.cognitoAwsCredentials = new CognitoIdentityCredentials(
             {
-                IdentityPoolId: Config.cognito.identityPoolId,
+                IdentityPoolId: cognitoConfig.identityPoolId,
                 Logins: logins,
                 LoginId: username
             },
             {
-                region: Config.cognito.userPool.region
+                region: cognitoConfig.userPool.region
             }
         );
         // call refresh method in order to authenticate user and get new temp credentials
@@ -251,7 +251,7 @@ export class AuthService {
                 AWSConfig.credentials = this.cognitoAwsCredentials;
                 callback(null);
             }
-        })
+        });
     }
 
     setPreviousAppParams(params: any) {
@@ -272,7 +272,7 @@ export class AuthService {
     }
 
     redirectToSignin(params?: any) {
-        const queryParamString = URLUtil.toQueryParamString(params).replace(/from=[^&]+&/g, '')
+        const queryParamString = URLUtil.toQueryParamString(params).replace(/from=[^&]+&/g, '');
         const encodedParams = encodeURIComponent(queryParamString);
         window.location.href = `${URLUtil.getBaseUrl()}/signin#/?from=upload&params=${encodedParams}`;
     }

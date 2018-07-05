@@ -1,2 +1,3 @@
 export {DownloadComponent} from './component';
-export {DownLoadService} from './service'
+export {DownLoadService} from './service';
+

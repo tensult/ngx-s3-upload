@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
 import { User } from '../auth/types';
-import { S3Factory } from '../../utils'
+import { S3Factory } from '../../utils';
 import { s3Config } from '../../config';
 
 @Injectable()
@@ -10,7 +8,7 @@ export class DownLoadService {
 
   private signedInUser: User;
   private defaultRegion: string;
-  private signedUrlExpireSeconds = 60 * 5
+  private signedUrlExpireSeconds = 60 * 5;
 
 
   constructor() {
@@ -30,7 +28,7 @@ export class DownLoadService {
   listFiles() {
     return S3Factory.getS3(this.defaultRegion).listObjectsV2({
       Bucket: s3Config[this.defaultRegion],
-      Prefix: [this.signedInUser.username, this.signedInUser.userId].join("/")
+      Prefix: [this.signedInUser.username, this.signedInUser.userId].join('/')
     }).promise();
   }
 
@@ -39,7 +37,7 @@ export class DownLoadService {
       Bucket: s3Config[this.defaultRegion],
       Key: key,
       Expires: this.signedUrlExpireSeconds
-    })
+    });
   }
 
 }
