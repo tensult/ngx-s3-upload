@@ -14,7 +14,7 @@ ng serve
 Once app is successfully started: open http://localhost:4200/ in your browser
 # Configure with your own AWS account
 ## Amazon S3 Setup
-* Create Bucket for uploads and update [src/config/s3.ts](https://github.com/tensult/ngx-s3-upload/blob/master/src/config/s3.ts) accordingly.
+* Create Bucket for uploads and update the bucket details and your s3 bucket default region:[src/config/s3.ts](https://github.com/tensult/ngx-s3-upload/blob/master/src/config/s3.ts) accordingly.
 * Enable CORS on S3 bucket with following CORS permissions.
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

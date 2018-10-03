@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { User } from '../auth/types';
 import { ContainerEvents, FileObject } from './types';
@@ -19,10 +18,10 @@ export class UploadService {
   uploadContrainerEvent$ = this.uploadContainerEventSource.asObservable();
   fileUploadEvent$ = this.fileUploadEventSource.asObservable();
   private signedInUser: User;
-  private defaultRegion: string;
+  private region: string;
 
   constructor() {
-    this.defaultRegion = 'ap-south-1';
+    this.region = s3Config.defaultRegion || 'ap-south-1';
   }
 
   setSignedInUser(user: User) {
@@ -39,7 +38,7 @@ export class UploadService {
   }
 
   setRegion(region: string) {
-    this.defaultRegion = region;
+    this.region = region;
   }
 
   private preparePutObjectRequest(file: File, region: string): S3.Types.PutObjectRequest {
@@ -51,23 +50,11 @@ export class UploadService {
       now.getUTCMonth(),
       now.getUTCDate(),
       file.name].join('/'),
-      Bucket: s3Config[region],
+      Bucket: s3Config.buckets[region],
       Body: file,
       ContentType: file.type
     };
     return obj;
-    
-    // return {
-    //   Key: [this.signedInUser.username,
-    //   this.signedInUser.userId,
-    //   now.getUTCFullYear(),
-    //   now.getUTCMonth(),
-    //   now.getUTCDate(),
-    //   file.name].join('/'),
-    //   Bucket: s3Config[region],
-    //   Body: file,
-    //   ContentType: file.type
-    // };
   }
 
   upload(file: File, progressCallback: (error: Error, progress: number, speed: number) => void, region?: string) {
@@ -75,7 +62,7 @@ export class UploadService {
       progressCallback(new Error('User not signed in'), undefined, undefined);
       return;
     }
-    region = region || this.defaultRegion;
+    region = region || this.region;
     const s3Upload = S3Factory.getS3(region).upload(this.preparePutObjectRequest(file, region));
     s3Upload.on('httpUploadProgress', this.handleS3UploadProgress(progressCallback));
     s3Upload.send(this.handleS3UploadComplete(progressCallback));
