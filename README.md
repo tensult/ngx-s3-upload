@@ -1,3 +1,5 @@
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=73QY55FZWSPRJ)
+
 # Get started
 This is a fully functional Angular 6 App to upload to S3 directly from browser using Cognito user and identity pools. For architecture and background details go [here](https://medium.com/tensult/s3-direct-upload-with-cognito-authentication-56a5c0ff4916).
 
