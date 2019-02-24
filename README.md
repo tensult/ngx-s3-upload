@@ -3,7 +3,10 @@
 # Get started
 This is a fully functional Angular 6 App to upload to S3 directly from browser using Cognito user and identity pools. For architecture and background details go [here](https://medium.com/tensult/s3-direct-upload-with-cognito-authentication-56a5c0ff4916).
 
-## Installation
+## Software Installation
+* [Git](https://git-scm.com/downloads)
+* [NodeJS](https://nodejs.org/en/download/)
+## Workspace setup
 ```
 git clone https://github.com/tensult/ngx-s3-upload.git
 cd ngx-s3-upload
@@ -11,12 +14,16 @@ npm install
 ```
 ## Starting the App
 ```
-ng serve
+npm start
 ```
+* Go to http://localhost:4200
+## S3 website Bucket setup for hosting the web app
+
 Once app is successfully started: open http://localhost:4200/ in your browser
 # Configure with your own AWS account
 ## Amazon S3 Setup
 * Create Bucket for uploads and update the bucket details and your s3 bucket default region:[src/config/s3.ts](https://github.com/tensult/ngx-s3-upload/blob/master/src/config/s3.ts) accordingly.
+   * Note: S3 bucket name should be globally unique.
 * Enable CORS on S3 bucket with following CORS permissions.
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -34,10 +41,14 @@ Once app is successfully started: open http://localhost:4200/ in your browser
 </CORSConfiguration>
 ```
 ![s3corspolicy](https://user-images.githubusercontent.com/33080863/42218959-e0a7a64e-7ee7-11e8-8535-a66d785e7193.png)
+* Video instructions are available at https://www.screencast.com/t/V0kpHnXP
 ## Amazon Cognito Setup
-* Create cognito user pool.
+* Create cognito user pool. 
+  * Video instructions are available at https://www.screencast.com/t/Njwyv1v6Se9
 * Create cognito identity pool and associate with user pool.
-* Associate role for authenticated users with cognito identity pool with PutObject permission to the S3 buckets. You can also refer to the my identity pool [policy](https://gist.github.com/koladilip/3b70c313a7071d12a83b818efa1abc75/).
+   Note : Associate role for authenticated users with cognito identity pool with PutObject permission to the S3 buckets. You can also refer to the my identity pool [policy](https://gist.github.com/koladilip/3b70c313a7071d12a83b818efa1abc75/).
+  * Video instructions are available at https://www.screencast.com/t/Mrd4zbvCLN
+
 * Update [src/config/cognito.ts](https://github.com/tensult/ngx-s3-upload/blob/master/src/config/cognito.ts) accordingly.
 
 # Sample Screens
