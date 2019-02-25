@@ -6,23 +6,10 @@ This is a fully functional Angular 6 App to upload to S3 directly from browser u
 ## Software Installation
 * [Git](https://git-scm.com/downloads)
 * [NodeJS](https://nodejs.org/en/download/)
-## Workspace setup
-```
-git clone https://github.com/tensult/ngx-s3-upload.git
-cd ngx-s3-upload
-npm install
-```
-## Starting the App
-```
-npm start
-```
-* Go to http://localhost:4200
-## S3 website Bucket setup for hosting the web app
 
-Once app is successfully started: open http://localhost:4200/ in your browser
 # Configure with your own AWS account
 ## Amazon S3 Setup
-* Create Bucket for uploads and update the bucket details and your s3 bucket default region:[src/config/s3.ts](https://github.com/tensult/ngx-s3-upload/blob/master/src/config/s3.ts) accordingly.
+* Create Bucket for upload your objects.
    * Note: S3 bucket name should be globally unique.
 * Enable CORS on S3 bucket with following CORS permissions.
 ```xml
@@ -48,8 +35,25 @@ Once app is successfully started: open http://localhost:4200/ in your browser
 * Create cognito identity pool and associate with user pool.
    Note : Associate role for authenticated users with cognito identity pool with PutObject permission to the S3 buckets. You can also refer to the my identity pool [policy](https://gist.github.com/koladilip/3b70c313a7071d12a83b818efa1abc75/).
   * Video instructions are available at https://www.screencast.com/t/Mrd4zbvCLN
+  
+## Workspace setup
+```
+git clone https://github.com/tensult/ngx-s3-upload.git
+cd ngx-s3-upload
+```
+## Configurations
+ * Update the bucket details and your s3 bucket default region:[src/config/s3.ts](https://github.com/tensult/ngx-s3-upload/blob/master/src/config/s3.ts) accordingly..
+ * Update [src/config/cognito.ts](https://github.com/tensult/ngx-s3-upload/blob/master/src/config/cognito.ts) accordingly.
+ * Video instruction are available at https://www.screencast.com/t/MfzWbYHkvSsR
+## Starting the App
+```
+npm install
+npm start
+```
+Once app is successfully started: open http://localhost:4200/ in your browser
+* Go to http://localhost:4200
 
-* Update [src/config/cognito.ts](https://github.com/tensult/ngx-s3-upload/blob/master/src/config/cognito.ts) accordingly.
+## S3 website Bucket setup for hosting the web app
 
 # Sample Screens
 ## Home page
