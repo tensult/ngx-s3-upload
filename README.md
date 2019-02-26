@@ -28,7 +28,7 @@ This is a fully functional Angular 6 App to upload to S3 directly from browser u
 </CORSConfiguration>
 ```
 ![s3corspolicy](https://user-images.githubusercontent.com/33080863/42218959-e0a7a64e-7ee7-11e8-8535-a66d785e7193.png)
-* Video instructions are available at https://www.screencast.com/t/V0kpHnXP
+* Video instructions are available at https://www.screencast.com/t/SWEq2r1Kx
 ## Amazon Cognito Setup
 * Create cognito user pool. 
   * Video instructions are available at https://www.screencast.com/t/Njwyv1v6Se9
@@ -52,8 +52,14 @@ npm start
 ```
 Once app is successfully started: open http://localhost:4200/ in your browser
 * Go to http://localhost:4200
+* Video instructions are available at https://www.screencast.com/t/ncqBeM2mW7D
+
 
 ## S3 website Bucket setup for hosting the web app
+
+
+## Create a user in Cognito User Pools
+ Video instructions are available at :https://www.screencast.com/t/ye42zx51
 
 # Sample Screens
 ## Home page
@@ -78,6 +84,35 @@ Once app is successfully started: open http://localhost:4200/ in your browser
 * After clicking on `Downloads` link from upload page, this page will be opened. 
 * Here you can see those files you uploaded.
 ![downloads](https://user-images.githubusercontent.com/30007458/38556505-8c08bc5a-3ce7-11e8-8ddd-d83c28de6680.png)
+* Video instructions are available at https://www.screencast.com/t/JuauJmxQf
+
+## Hosting a Static Website on Amazon S3
+* Create a new bucket on Amazon S3 for static website hosting.
+* Update bucket policy on s3 bucket with the following policy
+
+```
+{
+    "Version": "2008-10-17",
+    "Statement": [
+        {
+            "Sid": "Allow Public Access to All Objects",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::s3-website-hosting/*"
+        }
+    ]
+}
+```
+
+## Build your App
+  npm run build
+
+* Upload the build files on S3 bucket.
+* In static website hosting choose "Use this bucket to host a website" option and 
+put index.html in Index document option. 
+* Click the endpoint url generated on s3 bucket.
+* Video instructions are available at: https://www.screencast.com/t/IaQm07kq6
 
 **Note:**
 We are uploading files at a folder named by your email in S3 bucket. 
