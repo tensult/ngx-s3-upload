@@ -112,7 +112,7 @@ Once app is successfully started: open http://localhost:4200/ in your browser
 * In static website hosting choose "Use this bucket to host a website" option and 
 put index.html in Index document option. 
 * Click the endpoint url generated on s3 bucket.
-* Video instructions are available at:
+* Video instructions are available at: https://www.screencast.com/t/IaQm07kq6
 
 **Note:**
 We are uploading files at a folder named by your email in S3 bucket. 
