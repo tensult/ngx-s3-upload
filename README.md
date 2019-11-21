@@ -43,6 +43,7 @@ cd ngx-s3-upload
 ```
 ## Configurations
  * Update the bucket details and your s3 bucket default region:[src/config/s3.ts](https://github.com/tensult/ngx-s3-upload/blob/master/src/config/s3.ts) accordingly..
+ * Update google analytics code: https://github.com/tensult/ngx-s3-upload/blob/master/src/index.html
  * Update [src/config/cognito.ts](https://github.com/tensult/ngx-s3-upload/blob/master/src/config/cognito.ts) accordingly.
  * Video instruction are available at https://www.screencast.com/t/MfzWbYHkvSsR
 ## Starting the App
