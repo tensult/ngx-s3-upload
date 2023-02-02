@@ -26,7 +26,7 @@
     "amazon-cognito-identity-js": "^2.0.3",
     "aws-sdk": "^2.211.1",
     "bootstrap": "^4.0.0",
-    "cloud-reports": "^0.2.3",
+    "cloud-reports": "^0.2.4",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
